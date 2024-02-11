@@ -1,0 +1,234 @@
+<html>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color:black;
+            background-image:
+            radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
+            radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px),
+            radial-gradient(white, rgba(208, 184, 184, 0.1) 2px, transparent 40px),
+            radial-gradient(rgba(255,255,255,.4), rgba(255,255,255,.1) 2px, transparent 30px);
+            background-size: 550px 550px, 350px 350px, 250px 250px, 150px 150px; 
+            background-position: 0 0, 40px 60px, 130px 270px, 70px 100px;
+            color: white;
+
+        }
+        abbr {
+            text-decoration: none;
+        }
+
+        .column {
+            float: left;
+            width: 50%;
+        }
+
+        .box-left-mini{
+            float:left;
+            width:292px;
+            height:141px;
+        }
+
+        .box-left-mini .front {
+            display: block;
+            z-index: 5;
+            position: relative;
+        }
+        .box-left-mini .front span {
+            background: #fff
+        }
+
+        .box-left-mini .behind_container {
+            background-color: #ff0;
+            position: relative;
+            top: -18px;
+        }
+        .box-left-mini .behind {
+            display: block;
+            z-index: 3;
+        }
+    </style>
+    <body>
+        <div class="column">
+            <button onclick="new_system()">Fly to New System (🚀-1)</button> 
+            <p id="describe">Welcome</p>
+        </div>
+        <div class="column">
+            <table>
+                <tr>
+                    <td id="ftl">🚀0&nbsp;&nbsp;&nbsp;</td>
+                    <td id="colony">🏠0&nbsp;&nbsp;&nbsp;</td>
+                    <td id="research">🧪0&nbsp;&nbsp;&nbsp;</td>
+                </tr>
+            </table>
+        </div>
+    </body>
+    <script>
+        function random_string(length=3,colour=false) {
+            let result = '';
+            if(colour){
+                characters = 'ABCDEF0123456789';
+            } else{
+                characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            }
+            const charactersLength = characters.length;
+            let counter = 0;
+            while (counter < length) {
+            result += characters.charAt(Math.floor(Math.random() * charactersLength));
+            counter += 1;
+            }
+            return result;
+        }
+
+        class planet {
+            constructor(data={},random=false) {
+                this.name = data.name ?? random_string();
+                this.moons = [];
+                if(random){
+                    Math.random() > 0.9 ? this.habitable = true : this.habitable = false;
+                    this.habitable && Math.random() > 0.5 ? this.life = true : this.life = false;
+                    this.type = 'NOT IMPLEMENTED';
+                    Math.random() > 0.7 ? this.rings = true : this.rings = false;
+                    this.colour = random_string(6,true);
+                    this.size = Math.floor(Math.random()*90+10);
+                    while (Math.random() < 0.3){
+                        this.moons.push(new moon({planet_size:this.size},true))
+                    }
+                } else {
+                    this.habitable = data.habitable ?? false;
+                    this.life = data.life ?? false;
+                    this.type = data.type ?? false;
+                    this.rings = data.rings ?? false;
+                    this.colour = data.colour ?? "D3D3D3";
+                    this.size = data.size ?? 50;
+                    this.moons = data.moons ?? [];
+                }
+            } 
+        }
+
+        class system {
+            constructor(data={},random=false) {
+                this.planets = [];
+                if(random){
+                    this.name = random_string();
+                    this.star = random_string();
+
+                    while (Math.random() < 0.9){
+                        this.planets.push(new planet({},true))
+                    }
+                } else {
+                    this.name = data.name ?? "Unknown";
+                    this.star = data.habitable ?? 'Sun';
+                }
+            }
+
+            add_planet(planet) {
+                this.planets.push(planet);
+            }
+
+            describe() {
+                let html_text = ""
+                html_text += `System name: ${this.name}<br>`
+                html_text += `Star name: ${this.star}<br>`
+                if (this.planets) {
+                    html_text += `Planets:<br>`;
+                    html_text += '<table>';
+                    for (const i in this.planets){
+                        var planet_ = this.planets[i];
+                        html_text += '<tr>';
+                        html_text += `<td><div id="circle" style="margin: auto; width: 50%; width: ${planet_.size}px;height: ${planet_.size}px;-webkit-border-radius: ${planet_.size/2}px;-moz-border-radius: ${planet_.size/2}px;border-radius: ${planet_.size/2}px;background: #${planet_.colour};"></div></td>`;
+                        html_text += `<td>${planet_.name}</td>`;
+                        html_text += `<td>`;
+                        for (const ii in planet_.moons){
+                            var moon_ = planet_.moons[ii];
+                            html_text += `<abbr title="${moon_.name}"><span style="color: #${moon_.colour}; font-size: ${moon_.size}px;">•</span></abbr>`;
+                        }
+                        html_text += `</td>`
+                        html_text += '</tr>'
+
+                    }
+                
+                    html_text += '</table>'
+                }
+                document.getElementById("describe").innerHTML = html_text;
+            }
+
+        }
+
+        class moon {
+            constructor(data={planet_size:40},random=false){
+                this.name = data.name ?? random_string();
+                this.colour =  data.colour ?? random_string(6,true);
+                if(data.planet_size){
+                    this.size = data.planet_size * (0.5 + Math.random() * 0.5);
+                }else{
+                    this.size = data.size ?? 40;
+                }
+                
+            }
+        }
+
+        class player {
+            constructor(data={}) {
+                this.name = data.name ?? 'Player 1';
+                this.resources = {colony_ships:2,ftl_fuel:2,research:0};
+                this.display_resources()
+            }
+
+            display_resources(){
+                document.getElementById("ftl").innerHTML = `🚀${this.resources.ftl_fuel}&nbsp;&nbsp;&nbsp;`;
+                document.getElementById("colony").innerHTML = `🏠${this.resources.colony_ships}&nbsp;&nbsp;&nbsp;`;
+                document.getElementById("research").innerHTML = `🧪${this.resources.research}&nbsp;&nbsp;&nbsp;`;
+            }
+
+            use_resources(resources){
+                var new_resources = {};
+                var possible = true;
+                for (const resource in this.resources) {
+                    new_resources[resource] = this.resources[resource] - (resources[resource] ?? 0);
+                    console.log(resource)
+                    console.log(this.resources)
+                    console.log(this.resources[resource])
+                    console.log(new_resources[resource])
+                    if (new_resources[resource] < 0) {
+                        possible = false;
+                    }
+                    
+                }
+                if (!possible) {
+                    alert(`Not enough resources, would be left with ${JSON.stringify(new_resources)}`)
+                    return false
+                }
+
+                this.resources = new_resources
+                return true
+            }
+        }
+        
+        //set up the starting system
+        solar_system = new system({'name':'Solar System'})
+
+        earth_moon = new moon({name:'Moon',size:30,colour:'D3D3D3'})
+
+        earth = new planet({'name':'Earth','habitable':true,'life':true,'colour':'00FFFF',moons:[earth_moon]})
+
+        solar_system.add_planet(new planet({'name':'Mercury','size':40}))
+        solar_system.add_planet(new planet({'name':'Venus','size':45,colour:'FFEBCD'}))
+        solar_system.add_planet(earth)
+        solar_system.add_planet(new planet({'name':'Mars','habitable':false,'life':false,size:42,colour:'8B0000'}))
+        solar_system.add_planet(new planet({'name':'Jupiter','habitable':false,'life':false,'type':'gas giant',size:80,colour:'FF8C00'}))
+        solar_system.add_planet(new planet({'name':'Saturn','habitable':false,'life':false,'type':'gas giant','rings':true,size:60,colour:'FFEBCD'}))
+        solar_system.add_planet(new planet({'name':'Uranus','habitable':false,'life':false,'type':'ice giant','rings':true,size:55,colour:'00FFFF'}))
+        solar_system.add_planet(new planet({'name':'Neptune','habitable':false,'life':false,'type':'ice giant',size:52,colour:'00008B'}))
+        solar_system.add_planet(new planet({'name':'Pluto','habitable':false,'life':false,'type':'dwarf',size:20,colour:'D3D3D3'}))
+
+        solar_system.describe()
+
+        function new_system(){
+            new system({},true).describe() 
+        }
+
+        current_player = new player()
+        
+    </script>
+
+</html>
