@@ -49,7 +49,7 @@
     </style>
     <body>
         <div class="column">
-            <button onclick="new_system()">Fly to New System (🚀-1)</button> 
+            <button onclick="current_player.fly_to_system()">Fly to New System (🚀-1)</button> 
             <p id="describe">Welcome</p>
         </div>
         <div class="column">
@@ -170,7 +170,7 @@
         class player {
             constructor(data={}) {
                 this.name = data.name ?? 'Player 1';
-                this.resources = {colony_ships:2,ftl_fuel:2,research:0};
+                this.resources = {colony_ships:2,ftl_fuel:5,research:0};
                 this.display_resources()
             }
 
@@ -195,12 +195,19 @@
                     
                 }
                 if (!possible) {
-                    alert(`Not enough resources, would be left with ${JSON.stringify(new_resources)}`)
+                    alert(`Not enough resources, you would be left with ${JSON.stringify(new_resources)}`)
                     return false
                 }
 
                 this.resources = new_resources
+                this.display_resources()
                 return true
+            }
+
+            fly_to_system(){
+                if(this.use_resources({ftl_fuel:1})){
+                    new system({},true).describe() 
+                }
             }
         }
         
