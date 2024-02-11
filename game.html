@@ -55,9 +55,9 @@
         <div class="column">
             <table>
                 <tr>
-                    <td id="ftl">🚀0&nbsp;&nbsp;&nbsp;</td>
-                    <td id="colony">🏠0&nbsp;&nbsp;&nbsp;</td>
-                    <td id="research">🧪0&nbsp;&nbsp;&nbsp;</td>
+                    <td>🚀<span id="ftl">0</span>&nbsp;&nbsp;&nbsp;</td>
+                    <td>🏠<span id="colony">0</span>&nbsp;&nbsp;&nbsp;</td>
+                    <td>🧪<span id="research">0</span>&nbsp;&nbsp;&nbsp;</td>
                 </tr>
             </table>
         </div>
@@ -175,9 +175,9 @@
             }
 
             display_resources(){
-                document.getElementById("ftl").innerHTML = `🚀${this.resources.ftl_fuel}&nbsp;&nbsp;&nbsp;`;
-                document.getElementById("colony").innerHTML = `🏠${this.resources.colony_ships}&nbsp;&nbsp;&nbsp;`;
-                document.getElementById("research").innerHTML = `🧪${this.resources.research}&nbsp;&nbsp;&nbsp;`;
+                document.getElementById("ftl").innerHTML = this.resources.ftl_fuel;
+                document.getElementById("colony").innerHTML = this.resources.colony_ships;
+                document.getElementById("research").innerHTML = this.resources.research;
             }
 
             use_resources(resources){
