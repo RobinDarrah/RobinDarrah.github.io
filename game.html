@@ -46,6 +46,14 @@
             display: block;
             z-index: 3;
         }
+
+        .row {
+            display: flex;
+        }
+
+        .column {
+            flex: 50%;
+        }
     </style>
     <body>
         <div class="column">
@@ -117,7 +125,9 @@
                     }
                 } else {
                     this.name = data.name ?? "Unknown";
-                    this.star = data.habitable ?? 'Sun';
+                    this.star = data.star ?? 'Sun';
+                    this.star_size = data.star_size ?? 500;
+                    this.star_colour = data.star_colour ?? 'f5930a';
                 }
             }
 
@@ -126,9 +136,11 @@
             }
 
             describe() {
-                let html_text = ""
-                html_text += `System name: ${this.name}<br>`
-                html_text += `Star name: ${this.star}<br>`
+                let html_text = "";
+                html_text += `System name: ${this.name}<br>`;
+                html_text += `<div class="row"><div class="column">`;
+                html_text += `Star: ${this.star}<br><div id="circle" style="margin: auto; width: 50%; position: relative; left: ${50-this.star_size}px; width: ${this.star_size}px;height: ${this.star_size}px;-webkit-border-radius: ${this.star_size/2}px;-moz-border-radius: ${this.star_size/2}px;border-radius: ${this.star_size/2}px;background: #${this.star_colour};"></div>`;
+                html_text += `</div><div class="column">`;
                 if (this.planets) {
                     html_text += `Planets:<br>`;
                     html_text += '<table>';
@@ -146,7 +158,7 @@
                         html_text += '</tr>'
 
                     }
-                
+                    html_text += `</div></div>`
                     html_text += '</table>'
                 }
                 document.getElementById("describe").innerHTML = html_text;
