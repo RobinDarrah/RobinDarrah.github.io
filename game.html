@@ -141,7 +141,7 @@
                 let html_text = "";
                 html_text += `System name: ${this.name}<br><br>`;
                 html_text += `<div class="row"><div class="column">`;
-                html_text += `Star: ${this.star}<br><div id="circle" style="margin: auto; width: 50%; position: relative; left: ${this.star_size*0.2-this.star_size}px; width: ${this.star_size}px;height: ${this.star_size}px;-webkit-border-radius: ${this.star_size/2}px;-moz-border-radius: ${this.star_size/2}px;border-radius: ${this.star_size/2}px;background: rgb(250 ${this.star_rgb_g} 7);"></div>`;
+                html_text += `Star: ${this.star}<br><div id="circle" onclick="alert('Do not look direcltly at the sun!')"" style="margin: auto; width: 50%; position: relative; left: ${this.star_size*0.2-this.star_size}px; width: ${this.star_size}px;height: ${this.star_size}px;-webkit-border-radius: ${this.star_size/2}px;-moz-border-radius: ${this.star_size/2}px;border-radius: ${this.star_size/2}px;background: rgb(250 ${this.star_rgb_g} 7);"></div>`;
                 html_text += `</div><div class="column">`;
                 if (this.planets) {
                     html_text += `Planets:<br>`;
