@@ -149,7 +149,7 @@
                     for (const i in this.planets){
                         var planet_ = this.planets[i];
                         html_text += '<tr>';
-                        html_text += `<td><div id="circle" style="margin: auto; width: 50%; width: ${planet_.size}px;height: ${planet_.size}px;-webkit-border-radius: ${planet_.size/2}px;-moz-border-radius: ${planet_.size/2}px;border-radius: ${planet_.size/2}px;background: #${planet_.colour};"></div></td>`;
+                        html_text += `<td><div id="circle" style="margin: auto; width: 50%; width: ${planet_.size}px;height: ${planet_.size}px;-webkit-border-radius: ${planet_.size/2}px;-moz-border-radius: ${planet_.size/2}px;border-radius: ${planet_.size/2}px;background: radial-gradient(circle at 100%, #${planet_.colour}, #${planet_.colour} 50%, #eee 75%, #${planet_.colour} 75%);"></div></td>`;
                         html_text += `<td>${planet_.name}</td>`;
                         html_text += `<td>`;
                         for (const ii in planet_.moons){
