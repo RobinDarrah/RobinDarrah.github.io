@@ -68,6 +68,10 @@
                     <td>🧪<span id="research">0</span>&nbsp;&nbsp;&nbsp;</td>
                 </tr>
             </table>
+            <p>
+                Previous Systems:
+                <span id="prev_systems"></span>
+            </p>
         </div>
     </body>
     <script>
@@ -86,6 +90,8 @@
             }
             return result;
         }
+
+        var systems = [];
 
         class planet {
             constructor(data={},random=false) {
@@ -131,6 +137,8 @@
                     this.star_size = data.star_size ?? 500;
                     this.star_rgb_g = data.star_rgb_g ?? 169;
                 }
+
+                systems.push(this)
             }
 
             add_planet(planet) {
@@ -194,6 +202,14 @@
                 document.getElementById("research").innerHTML = this.resources.research;
             }
 
+            display_previous_systems(){
+                var html_text = ''
+                systems.forEach(function (item, index) {
+                    html_text += `<br><button onclick="current_player.fly_to_system('${item.name}')">Fly to ${item.name} (🚀-1)</button>`
+                    });
+                document.getElementById("prev_systems").innerHTML = html_text;
+            }
+
             use_resources(resources){
                 var new_resources = {};
                 var possible = true;
@@ -218,9 +234,19 @@
                 return true
             }
 
-            fly_to_system(){
+            fly_to_system(existing_system=''){
                 if(this.use_resources({ftl_fuel:1})){
-                    new system({},true).describe() 
+                    if(existing_system){
+                        systems.forEach(function(system,index){
+                            if(system.name==existing_system){
+                                system.describe()
+                            }
+                        })
+                    }
+                    else {
+                        new system({},true).describe() 
+                    }
+                    this.display_previous_systems()
                 }
             }
         }
