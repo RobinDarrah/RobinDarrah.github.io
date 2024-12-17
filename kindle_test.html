@@ -1,9 +1,35 @@
 <html>
   <header>
+    <style>
+      #weather {
+        float: right;
+        font-size: 35;
+      }
+    </style>
   </header>
   <body>
-    <h1>A header</h1>
+    <script type="text/javascript" charset="utf-8">
+      let a;
+      let time;
+      setInterval(() => {
+        a = new Date();
+        time = a.getHours() + ':' + a.getMinutes();
+        document.getElementById('time').innerHTML = time;
+        date = a.getDay().toLocaleString('en-GB') + ',' + a.getDate().toLocaleString('en-GB');
+        document.getElementById('date').innerHTML = date;
+        console.log('hello',a)
+      }, 10000);
+    </script>
+    <div id="now">
+      <span id="time"></span> Heath
+      <br> <span id="date"></span>
+    </div>
+    <div id="weather">
+      <img src="partly_cloudy.png" width="50" alt="partly cloudy">
+      12C
+    </div>
+    <div id="calendar"></div>
     <p>emoji? ☀️ 🏊</p>
-    <img src="pool_40dp_FFFFFFF_FILL0_wght400_GRAD0_opsz40.png" width="50" alt="pool">
+    <img src="pool.png" width="50" alt="pool">
   </body>
 </html>
