@@ -1,54 +1,86 @@
 <html>
-  <header>
-    <style>
-      #weather {
-        float: right;
-        font-size: 35;
-      }
-      .cal_hour {
-        height: 50;
-      }
-      .cal_hour2 {
-        height: 150;
-      }
-    </style>
-  </header>
-  <body>
-    <script type="text/javascript" charset="utf-8">
-      let a;
-      let time;
-      setInterval(() => {
-        a = new Date();
-        time = a.getHours() + ':' + a.getMinutes();
-        document.getElementById('time').innerHTML = time;
-        date = a.getDay().toLocaleString('en-GB') + ',' + a.getDate().toLocaleString('en-GB');
-        document.getElementById('date').innerHTML = date;
-        console.log('hello',a)
-      }, 10000);
-    </script>
-    <div id="now">
-      <span id="time"></span> Heath
-      <br> <span id="date"></span>
-    </div>
-    <div id="weather">
-      <img src="partly_cloudy.png" width="50" alt="partly cloudy">
-      12C
-    </div>
-    <div id="calendar">
-      <div id="cal_times">
-        <div class="cal_hour">09:00</div>
-        <div class="cal_hour">10:00</div>
-        <div class="cal_hour">11:00</div>
-        <div class="cal_hour">12:00</div>
-        <div class="cal_hour">13:00</div>
-        <div class="cal_hour">14:00</div>
-        <div class="cal_hour">15:00</div>
-        <div class="cal_hour">16:00</div>
-        <div class="cal_hour2">17:00</div>
-        <div class="cal_hour2">18:00</div>
-      </div>
-    </div>
-    <p>emoji? ☀️ 🏊</p>
-    <img src="pool.png" width="50" alt="pool">
-  </body>
+<header>
+  <style>
+    .fl_left {
+      width: 400;
+    }
+
+    .fl_right {
+      float: right;
+    }
+
+    .cal_hour {
+      height: 100;
+    }
+  </style>
+</header>
+
+<body>
+  <script type="text/javascript" charset="utf-8">
+    let a;
+    let time;
+    setInterval(() => {
+      a = new Date();
+      time = a.getHours() + ':' + a.getMinutes();
+      document.getElementById('time').innerHTML = time;
+      date = a.getDay().toLocaleString('en-GB') + ',' + a.getDate().toLocaleString('en-GB');
+      document.getElementById('date').innerHTML = date;
+      console.log('hello', a)
+    }, 10000);
+  </script>
+
+  <table style="width:100%">
+    <tr id="headline_row">
+      <td>
+        <table id="headline_table" style="width:100%">
+          <tr>
+            <td style="width: 400;"><span id="time"></span> Heath
+              <br> <span id="date"></span>
+            </td>
+            <td style="width: 400;"><img src="partly_cloudy.png" width="50" alt="partly cloudy">
+              12C</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr id="calendar_row">
+      <td>
+        <table id="cal_table" style="width:100%">
+          <tr>
+            <td style="width: 100;">
+              <div class="cal_hour">09:00</div>
+              <div class="cal_hour">10:00</div>
+              <div class="cal_hour">11:00</div>
+              <div class="cal_hour">12:00</div>
+              <div class="cal_hour">13:00</div>
+              <div class="cal_hour">14:00</div>
+              <div class="cal_hour">15:00</div>
+              <div class="cal_hour">16:00</div>
+              <div class="cal_hour">17:00</div>
+              <div class="cal_hour">18:00</div>
+            </td>
+            <td style="width: 700;">
+              <div class="event" style="height:50;"><img src="pool.png" width="50" alt="pool">Travel to Swimming</div>
+              <div class="cal_hour">10:00</div>
+              <div class="cal_hour">11:00</div>
+              <div class="cal_hour">12:00</div>
+              <div class="cal_hour">13:00</div>
+              <div class="cal_hour">14:00</div>
+              <div class="cal_hour">15:00</div>
+              <div class="cal_hour">16:00</div>
+              <div class="cal_hour">17:00</div>
+              <div class="cal_hour">18:00</div>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+
+
+
+  
+  <img src="pool.png" width="50" alt="pool">
+</body>
+
 </html>
