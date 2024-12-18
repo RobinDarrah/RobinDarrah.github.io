@@ -31,26 +31,14 @@
 <!--no sequential events have 30px gap-->
 
 <body>
-  <script type="text/javascript" charset="utf-8">
-    let a;
-    let time;
-    setInterval(() => {
-     a = new Date();
-      time = a.getHours() + ':' + a.getMinutes();
-      document.getElementById('time').innerHTML = time;
-      date = a.getDay().toLocaleString('en-GB') + ',' + a.getDate().toLocaleString('en-GB');
-      document.getElementById('date').innerHTML = date;
-      console.log('hello', a)
-    }, 10000);
-  </script>
 
   <table style="width:98%">
     <tr id="headline_row">
       <td>
         <table id="headline_table" style="width:100%">
           <tr>
-            <td style="width: 400;"><span id="time2"></span>10:05 Glen
-              <br> <span id="date2"></span> Thurs, 18th of Dec
+            <td style="width: 400;"><span id="time"></span> Glen
+              <br> <span id="date"></span> Thurs, 18th of Dec
             </td>
             <td style="width: 400;"><img src="images/partly_cloudy.png" width="100" alt="partly cloudy" class="fl_left">
               Partly Cloudy<br>12C</td>
@@ -80,7 +68,30 @@
     </tr>
   </table>
 
+  <script type="text/javascript" charset="utf-8">
+    function updateTime() {
+      a = new Date();
+      time = a.getHours() + ':' + a.getMinutes();
+      document.getElementById('time').innerHTML = time;
+      date = a.getDay().toLocaleString('en-GB') + ',' + a.getDate().toLocaleString('en-GB');
+      document.getElementById('date').innerHTML = date;
+      console.log('hello', a)
+    }
+    updateTime()
+    t1 = setTimeout(updateTime, 60000);
+    t2 = setTimeout(updateTime, 60000 * 2);
+    t3 = setTimeout(updateTime, 60000 * 3);
+    t4 = setTimeout(updateTime, 60000 * 4);
+    t5 = setTimeout(updateTime, 60000 * 5);
 
+    function refresh_page() {
+      console.log('refreshing')
+      window.location.reload()
+    }
+
+    t0 = setTimeout(refresh_page, 60000 * 6);
+ 
+  </script>
 
   
 </body>
