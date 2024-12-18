@@ -12,8 +12,15 @@
     .cal_hour {
       height: 100;
     }
+
+    #headline_table {
+      font-size: 40;
+    }
   </style>
 </header>
+<!--1 minute = 1 pixels-->
+<!--40px minimum height-->
+<!--no sequential events have 30px gap-->
 
 <body>
   <script type="text/javascript" charset="utf-8">
@@ -34,10 +41,10 @@
       <td>
         <table id="headline_table" style="width:100%">
           <tr>
-            <td style="width: 400;"><span id="time"></span> Heath
-              <br> <span id="date"></span>
+            <td style="width: 400;"><span id="time2"></span>10:05 Glen
+              <br> <span id="date2"></span> Thurs, 18th of Dec
             </td>
-            <td style="width: 400;"><img src="partly_cloudy.png" width="50" alt="partly cloudy">
+            <td style="width: 400;"><img src="images/partly_cloudy.png" width="100" alt="partly cloudy">
               12C</td>
           </tr>
         </table>
@@ -47,29 +54,17 @@
       <td>
         <table id="cal_table" style="width:100%">
           <tr>
-            <td style="width: 100;">
-              <div class="cal_hour">09:00</div>
-              <div class="cal_hour">10:00</div>
-              <div class="cal_hour">11:00</div>
-              <div class="cal_hour">12:00</div>
-              <div class="cal_hour">13:00</div>
-              <div class="cal_hour">14:00</div>
-              <div class="cal_hour">15:00</div>
-              <div class="cal_hour">16:00</div>
-              <div class="cal_hour">17:00</div>
-              <div class="cal_hour">18:00</div>
+            <td style="width: 1;">
             </td>
             <td style="width: 700;">
-              <div class="event" style="height:50; border-radius:4px; border:2px solid black;"><img src="pool.png" width="50" style="float: left;" alt="pool">09:00<br>Travel to Swimming</div>
-              <div class="cal_hour" style="height:150;"></div>
-              <div class="event" style="height:150; border-radius:4px; border:2px solid black;"><img src="pool.png" width="50" style="float: left;" alt="pool">11:00<br>Maths</div>
-              <div class="cal_hour">12:00</div>
-              <div class="cal_hour">13:00</div>
-              <div class="cal_hour">14:00</div>
-              <div class="cal_hour">15:00</div>
-              <div class="cal_hour">16:00</div>
-              <div class="cal_hour">17:00</div>
-              <div class="cal_hour">18:00</div>
+              <div class="event" style="height:120; border-radius:4px; border:2px solid black;"><img src="images/pool.png" width="50" style="float: left;" alt="pool">09:00-11:00<br>Swimming</div>
+              <div class="cal_hour" style="height:30;"></div>
+              <div class="event" style="height:40; border-radius:4px; border:2px solid black;"><img src="images/maths.png" width="40" style="float: left;" alt="maths">12:00-12:30<br>Maths</div>
+              <div class="cal_hour" style="height:30;"></div>
+              <div class="event" style="height:40; border-radius:4px; border:2px solid black;"><img src="images/chores.png" width="40" style="float: left;" alt="chores">13:00-13:30<br>Chores</div>
+              <div class="event" style="height:150; border-radius:4px; border:2px solid black;"><img src="images/read.png" width="40" style="float: left;" alt="read">13:30-16:00<br>Ben Tutor</div>
+              <div class="cal_hour" style="height:30;"></div>
+              <div class="event" style="height:40; border-radius:4px; border:2px solid black;"><img src="images/food.png" width="40" style="float: left;" alt="food">18:00-18:40<br>Tea</div>
             </td>
           </tr>
         </table>
