@@ -1,8 +1,12 @@
 <html>
 <header>
   <style>
+    div {
+      font-size: 40;
+    }
+
     .fl_left {
-      width: 400;
+      float: left;
     }
 
     .fl_right {
@@ -16,6 +20,10 @@
     #headline_table {
       font-size: 40;
     }
+
+    .event_time{
+      width: 500;
+    }
   </style>
 </header>
 <!--1 minute = 2 pixels-->
@@ -27,7 +35,7 @@
     let a;
     let time;
     setInterval(() => {
-      a = new Date();
+     a = new Date();
       time = a.getHours() + ':' + a.getMinutes();
       document.getElementById('time').innerHTML = time;
       date = a.getDay().toLocaleString('en-GB') + ',' + a.getDate().toLocaleString('en-GB');
@@ -44,7 +52,7 @@
             <td style="width: 400;"><span id="time2"></span>10:05 Glen
               <br> <span id="date2"></span> Thurs, 18th of Dec
             </td>
-            <td style="width: 400;"><img src="images/partly_cloudy.png" width="100" alt="partly cloudy" style=" float:left;">
+            <td style="width: 400;"><img src="images/partly_cloudy.png" width="100" alt="partly cloudy" class="fl_left">
               Partly Cloudy<br>12C</td>
           </tr>
         </table>
@@ -57,14 +65,14 @@
             <td style="width: 1;">
             </td>
             <td style="width: 700;">
-              <div class="event" style="height:240; border-radius:4px; border:2px solid black;"><img src="images/pool.png" width="80" style="float: left;" alt="pool">09:00-11:00<br>Swimming</div>
+              <div class="event" style="height:240; border-radius:4px; border:2px solid black;"><img src="images/pool.png" width="80" class="fl_left" alt="pool"><span class="event_time">09:00-11:00&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>Swimming</div>
               <div class="cal_hour" style="height:30;"></div>
-              <div class="event" style="height:80; border-radius:4px; border:2px solid black;"><img src="images/maths.png" width="80" style="float: left;" alt="maths">12:00-12:30<br>Maths</div>
+              <div class="event" style="height:80; border-radius:4px; border:2px solid black;"><img src="images/maths.png" width="80" class="fl_left" alt="maths"><span class="event_time">12:00-12:30&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>Maths</div>
               <div class="cal_hour" style="height:30;"></div>
-              <div class="event" style="height:80; border-radius:4px; border:2px solid black;"><img src="images/chores.png" width="80" style="float: left;" alt="chores">13:00-13:30<br>Chores</div>
-              <div class="event" style="height:300; border-radius:4px; border:2px solid black;"><img src="images/read.png" width="80" style="float: left;" alt="read">13:30-16:00<br>Ben Tutor</div>
+              <div class="event" style="height:80; border-radius:4px; border:2px solid black;"><img src="images/chores.png" width="80" class="fl_left" alt="chores"><span class="event_time">13:00-13:30&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>Chores</div>
+              <div class="event" style="height:300; border-radius:4px; border:2px solid black;"><img src="images/read.png" width="80" class="fl_left" alt="read"><span class="event_time">13:30-16:00&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>Ben Tutor</div>
               <div class="cal_hour" style="height:30;"></div>
-              <div class="event" style="height:80; border-radius:4px; border:2px solid black;"><img src="images/food.png" width="80" style="float: left;" alt="food">18:00-18:40<br>Tea</div>
+              <div class="event" style="height:80; border-radius:4px; border:2px solid black;"><img src="images/food.png" width="80" class="fl_left" alt="food"><span class="event_time">18:00-18:40&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>Tea</div>
             </td>
           </tr>
         </table>
